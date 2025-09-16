@@ -21,27 +21,17 @@ const iconColors = [
   'text-orange-400', 'text-teal-400', 'text-pink-400',
 ];
 
-// Component SongCard được nâng cấp để tự động đổi màu
 const SongCard = ({ song, index }) => { 
-  // THAY ĐỔI 1: Dùng `useState` để lưu trữ chỉ số màu hiện tại.
-  // Khởi tạo màu ban đầu dựa trên vị trí của card để chúng không bắt đầu cùng một màu.
   const [colorIndex, setColorIndex] = useState(index % iconColors.length);
 
-  // THAY ĐỔI 2: Dùng `useEffect` để tạo một bộ đếm thời gian (interval).
   useEffect(() => {
-    // Cứ mỗi 2000ms (2 giây), cập nhật lại chỉ số màu
     const intervalId = setInterval(() => {
-      // Dùng callback để lấy giá trị trước đó và tính giá trị tiếp theo
-      // Dùng toán tử modulo (%) để nó tự quay lại màu đầu tiên khi hết danh sách
       setColorIndex(prevIndex => (prevIndex + 1) % iconColors.length);
-    }, 2000); // Bạn có thể thay đổi thời gian (ms) ở đây
+    }, 2000); 
 
-    // Rất quan trọng: Dọn dẹp interval khi component bị unmount (biến mất khỏi màn hình)
-    // để tránh rò rỉ bộ nhớ.
     return () => clearInterval(intervalId);
-  }, []); // Mảng rỗng `[]` đảm bảo hiệu ứng này chỉ chạy một lần khi component được tạo.
+  }, []);
 
-  // THAY ĐỔI 3: Lấy lớp màu từ state thay vì tính toán tĩnh
   const colorClass = iconColors[colorIndex];
 
   return (
@@ -54,7 +44,6 @@ const SongCard = ({ song, index }) => {
         relative w-full mb-3 md:mb-4 aspect-square rounded-md
         flex items-center justify-center bg-neutral-700/60
       ">
-        {/* Transition-colors giúp màu sắc thay đổi mượt mà hơn */}
         <FaMusic className={`text-4xl md:text-5xl transition-colors duration-500 ${colorClass}`} />
 
         <button className=" cursor-pointer
@@ -80,7 +69,6 @@ const SongCard = ({ song, index }) => {
   );
 };
 
-// Component SongList không cần thay đổi
 function SongList() {
   return (
     <div className="w-full max-w-screen-xl mx-auto py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
