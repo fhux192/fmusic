@@ -12,7 +12,7 @@ function Navbar() {
   };
 
   return (
-    <header className="  justify-self-center sticky top-0 z-50 p-2 pt-4 transition-all mb-0 sm:mb-1">
+    <header className=" min-w-[20vh] justify-self-center sticky top-0 z-50 p-2 pt-4 transition-all mb-0 sm:mb-1">
       <div
         className="
           mx-auto rounded-full p-[3px]

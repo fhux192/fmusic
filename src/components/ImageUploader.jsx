@@ -67,7 +67,7 @@ function ImageUploader({ onSubmit, onImageRemove }) {
           </div>
         ) : (
           <div className="text-center">
-            <div className="w-full max-h-60 sm:max-h-80 md:max-h-96 overflow-hidden rounded-lg mb-6 border border-white/10">
+            <div className="w-full aspect-square overflow-hidden rounded-lg mb-6 border border-white/10">
               <img src={previewUrl} alt="Preview" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

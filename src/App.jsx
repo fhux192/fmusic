@@ -31,11 +31,11 @@ function App() {
       <main className="flex flex-col items-center w-full px-4 text-center py-12 sm:py-16">
         
         <div className="">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-1 lg:mb-2  
+            <h1 className="text- cursor-default sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-1 lg:mb-2  
                 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
                 Gợi ý bài hát qua hình ảnh
             </h1>
-            <p className="text-sm mb-6 lg:mb-8 font-bold  sm:text-base text-gray-500 max-w-xl mx-auto">
+            <p className="text-sm cursor-default mb-6 lg:mb-8 font-bold  sm:text-base text-gray-500 max-w-xl mx-auto">
                 Tải lên một bức ảnh và tìm kiếm giai điệu 
             </p>
         </div>
@@ -53,7 +53,7 @@ function App() {
 
       </main>
 
-      <footer className="absolute font-bold bottom-0 left-0 right-0 text-center p-5 text-gray-700 text-xs sm:text-sm">
+      <footer className="absolute cursor-default font-bold bottom-0 left-0 right-0 text-center p-5 text-gray-700 text-xs sm:text-sm">
         <p>Created by Nguyen Hoang Phuc</p>
       </footer>
     </div>
