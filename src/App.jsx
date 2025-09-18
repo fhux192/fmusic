@@ -7,12 +7,19 @@ function App() {
   const songListRef = useRef(null);
   const [isSongListVisible, setIsSongListVisible] = useState(false);
 
-  const handleSubmitImage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [suggestionData, setSuggestionData] = useState(null);
+
+  const handleSuggestionComplete = (data) => {
+    setSuggestionData(data);
     setIsSongListVisible(true);
   };
 
   const handleImageRemove = () => {
     setIsSongListVisible(false);
+    setSuggestionData(null);
+    setError('');
   };
   
   useEffect(() => {
@@ -33,7 +40,7 @@ function App() {
         <div className="">
             <h1 className="text- cursor-default sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-1 lg:mb-2  
                 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-                Gợi ý bài hát qua hình ảnh
+                Gợi ý bài hát bằng hình ảnh
             </h1>
             <p className="text-sm cursor-default mb-6 lg:mb-8 font-bold  sm:text-base text-gray-500 max-w-xl mx-auto">
                 Tải lên một bức ảnh và tìm kiếm giai điệu 
@@ -41,13 +48,21 @@ function App() {
         </div>
         
         <ImageUploader 
-          onSubmit={handleSubmitImage}
           onImageRemove={handleImageRemove} 
+          onSuggestionComplete={handleSuggestionComplete}
+          setIsLoading={setIsLoading}
+          setError={setError}
         />
 
-        {isSongListVisible && (
+        {isLoading && <p className="mt-8 text-lg text-blue-400">Đang phân tích ảnh, vui lòng chờ...</p>}
+        {error && <p className="mt-8 text-lg text-red-500">{error}</p>}
+
+        {isSongListVisible && suggestionData && (
           <div ref={songListRef} className="w-full mt-12 sm:mt-16">
-            <SongList />
+            <SongList 
+              description={suggestionData.description} 
+              songs={suggestionData.suggested_songs}
+            />
           </div>
         )}
 
