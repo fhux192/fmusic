@@ -35,7 +35,7 @@ function App() {
     <div className="relative min-h-screen w-full bg-gray-950 text-white font-sans">
       <Navbar />
 
-      <main className="flex flex-col items-center w-full px-4 text-center py-12 sm:py-16">
+      <main className="flex flex-col items-center w-full px-4 text-center py-12 sm:py-12">
         
         <div className="">
             <h1 className="text- cursor-default sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-1 lg:mb-2  
