@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaMusic } from "react-icons/fa";
 
 function Navbar() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    // Nếu scroll xuống và không ở trên cùng, ẩn navbar
+    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      setIsVisible(false);
+    } else { // Nếu scroll lên, hiện navbar
+      setIsVisible(true);
+    }
+    // Cập nhật vị trí scroll cuối cùng
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar);
+    // Cleanup function để gỡ event listener khi component unmount
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
+
   const handleScrollToTop = (event) => {
     event.preventDefault();
-
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -12,7 +34,13 @@ function Navbar() {
   };
 
   return (
-    <header className="px-[7rem] min-w-[20vh] justify-self-center sticky top-0 z-50 p-2 pt-4 transition-all mb-0 sm:mb-1">
+    // Thêm các class transition và transform để tạo animation
+    // Dựa vào state `isVisible` để quyết định vị trí của Navbar
+    <header 
+      className={`px-4 sm:px-[7rem] min-w-[20vh] justify-self-center sticky top-0 z-50 p-2 pt-4 mb-0 sm:mb-1 
+                 transition-transform duration-500 ease-in-out
+                 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
+    >
       <div
         className="
           mx-auto rounded-full p-[3px]

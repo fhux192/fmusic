@@ -43,18 +43,18 @@ function SongList({ description, songs }) {
   }
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl cursor-default font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-bl from-red-500 to-blue-500">
+    <div className="w-full max-w-screen-xl mx-auto py-4 px-4 sm:px-6 lg:px-20">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl cursor-default font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-bl from-red-500 to-blue-500">
         Bài hát gợi ý cho bạn
       </h2>
 
-      <div className="mb-10 text-center">
+      <div className="mb-4 text-center">
         <p className="text-neutral-300 italic max-w-3xl mx-auto">
           "{description}"
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-4">
         {songs.map((song) => (
           <SongCard className="cursor-pointer" key={song.id} song={song} />
         ))}
